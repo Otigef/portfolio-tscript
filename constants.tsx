@@ -27,17 +27,17 @@ const WebDevIcon = () => (
   </svg>
 );
 
-const PROFILE_IMAGE_DATA = 'data:image/jpeg;base64,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';
+const PROFILE_IMAGE_DATA = 'https://scontent.fnbo2-1.fna.fbcdn.net/v/t39.30808-6/481770649_630927166337028_4599393354229782662_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHqRZf-3JM1TbxQCRMfgD-YJ73bg8VzQ6YnvduDxXNDpo1vloB5X3c6tC-ra4PUtK52viPfaUdK4q6yDQXzfD9C&_nc_ohc=FGfM9dRIuFUQ7kNvwEyjbo6&_nc_oc=Adl4EgNv5Iav5B0Ts9av8W9F3AmOZYxfPJ3a6iZ2X7yg2lgEP5v3rS4isfcm_Y5QEjo&_nc_zt=23&_nc_ht=scontent.fnbo2-1.fna&_nc_gid=sc0eLzJ_UR714NlE1Fjp5g&oh=00_Afb_0qGthk5L_d6oPRsOU0GPnkBeCOxoP_c2oOqZOXFQRQ&oe=68DA08AC';
 
 export const PERSONAL_INFO = {
   name: "Geoffrey Nehemiah Otieno",
   title: "Software Engineer & Web Developer",
   tagline: "Building functional and visually appealing digital solutions.",
   about: "A diligent and adaptable Software Engineer with a background in operations and logistics. My journey into technology was driven by a passion for problem-solving and creating efficient, elegant solutions. I thrive on turning complex challenges into user-friendly web experiences, leveraging my skills in modern web technologies. My past experience has honed my ability to manage projects, adapt to new environments quickly, and maintain a keen eye for detail—qualities I now bring to every line of code I write.",
-  email: "geoffrey.n.otieno@example.com",
-  phone: "+1 (555) 123-4567",
-  linkedin: "https://www.linkedin.com/in/geoffreyotieno",
-  github: "https://github.com/geoffreyotieno",
+  email: "otigef@yahoo.com",
+  phone: "+254723570446",
+  linkedin: "https://www.linkedin.com/in/geoffrey-nehemiah-otieno-a79a296b/",
+  github: "https://github.com/Otigef",
   resumeUrl: "/geoffrey-otieno-resume.pdf",
   profileImage: PROFILE_IMAGE_DATA,
 };

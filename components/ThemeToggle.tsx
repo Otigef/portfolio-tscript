@@ -17,13 +17,26 @@ const MoonIcon = () => (
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleTheme();
+    }
+  };
+
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-200"
+      onKeyDown={handleKeyDown}
+      className="group p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-200"
       aria-label="Toggle theme"
+      aria-pressed={theme === 'dark'}
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+      <span className="block transition-transform duration-300 ease-out group-hover:rotate-12 group-active:scale-95">
+        {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+      </span>
+      <span className="sr-only">{theme === 'light' ? 'Enable dark mode' : 'Enable light mode'}</span>
     </button>
   );
 };

@@ -14,31 +14,8 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute('href');
-    if (!href) return;
-
-    if (href === '#home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const headerOffset = 80; // Offset to account for fixed header
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }
-
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    }
+  const handleLinkClick = () => {
+    if (isMenuOpen) setIsMenuOpen(false);
   };
 
 
@@ -84,9 +61,7 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#home" onClick={handleLinkClick} className="text-2xl font-bold text-teal-500 dark:text-teal-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors">
-          GNO
-        </a>
+        <div aria-hidden="true" />
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
@@ -111,6 +86,8 @@ const Header: React.FC = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="relative z-50 h-8 w-8 text-gray-600 dark:text-gray-300 focus:outline-none"
                 aria-label="Toggle menu"
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
             >
                 <div className="absolute top-1/2 left-1/2 w-6 -translate-x-1/2 -translate-y-1/2 transform">
                 <span
@@ -136,13 +113,13 @@ const Header: React.FC = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
+        <div id="mobile-menu" className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
           <nav className="flex flex-col items-center space-y-4 py-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
-                onClick={handleLinkClick}
+              href={link.href}
+              onClick={handleLinkClick}
                 className={`text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300 text-lg ${
                   activeSection === link.href.substring(1) ? 'text-teal-500 dark:text-teal-400 font-semibold' : ''
                 }`}

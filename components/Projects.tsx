@@ -1,4 +1,5 @@
 import React from 'react';
+import Typewriter from './Typewriter';
 import { PROJECTS } from '../constants';
 
 const GithubIcon = () => (
@@ -11,24 +12,35 @@ const ExternalLinkIcon = () => (
 
 const ProjectCard: React.FC<{ project: typeof PROJECTS[0] }> = ({ project }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden group transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20">
-      <div className="relative">
-        <img src={project.image} alt={project.title} className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-70 transition-all duration-300"></div>
-        <div className="absolute bottom-4 left-4 flex gap-2">
+    <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden group transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/25 hover:-translate-y-1 hover:shadow-lg hover:border-teal-500/20 border border-transparent">
+      <div className="relative overflow-hidden">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          loading="lazy" 
+          decoding="async" 
+          className="w-full h-48 sm:h-52 md:h-56 object-cover transition-transform duration-500 ease-out group-hover:scale-110 group-hover:brightness-110" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 group-hover:via-black/30 transition-all duration-300"></div>
+        <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 flex gap-1 sm:gap-2 flex-wrap">
             {project.tags.map(tag => (
-                <span key={tag} className="bg-teal-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full">{tag}</span>
+                <span key={tag} className="bg-teal-500 text-white text-xs font-semibold px-2 py-1 rounded-full transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">{tag}</span>
             ))}
         </div>
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2">
+            <ExternalLinkIcon />
+          </div>
+        </div>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 h-20 overflow-hidden">{project.description}</p>
+      <div className="p-4 sm:p-6 transform transition-all duration-300 group-hover:bg-gray-50 dark:group-hover:bg-gray-700/50">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 transform transition-all duration-300 group-hover:text-teal-600 dark:group-hover:text-teal-400">{project.title}</h3>
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 h-16 sm:h-20 overflow-hidden transform transition-all duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300">{project.description}</p>
         <div className="flex justify-end space-x-4">
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300" aria-label="GitHub Link">
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-all duration-300 transform hover:scale-110 hover:rotate-12" aria-label="GitHub Link">
             <GithubIcon />
           </a>
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300" aria-label="Live Demo Link">
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-all duration-300 transform hover:scale-110 hover:-rotate-12" aria-label="Live Demo Link">
             <ExternalLinkIcon />
           </a>
         </div>
@@ -42,8 +54,10 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 bg-gray-100 dark:bg-gray-800">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 text-teal-600 dark:text-teal-400">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 className="text-3xl font-bold text-center mb-12 text-teal-600 dark:text-teal-400">
+          <Typewriter texts={["Projects", "Recent Work", "Selected Builds"]} />
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
